@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Audiotest.iml" filepath="$PROJECT_DIR$/.idea/Audiotest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MySynthesizer.iml" filepath="$PROJECT_DIR$/.idea/MySynthesizer.iml" />
     </modules>
   </component>
 </project>

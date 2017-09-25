@@ -38,16 +38,27 @@ class callGUI(Frame):  # GUI is een extension van Frame. Frame is een systeem cl
         self.slider1.config(from_=20)
         self.slider1.config(to_=1000)
         self.slider1.config(tickinterval=200)
+        self.slider1.set(200)
         # self.slider1.grid(row = 0)
         self.s = self.slider1
         self.s.pack()
         self.slider1.config(label="swag")
         # SLIDER1VAL = self.slider1.get()
+
         self.slider2 = Scale(self)
         self.slider2.config(orient=HORIZONTAL, length=400, width=10, sliderlength=20, from_=0.001, to_=10.00, tickinterval=200)
+        self.slider2.set(2)
         # self.slider2.grid(row = 1)
         self.slider2.config(label="swag2")
         self.s = self.slider2
+        self.s.pack()
+
+        self.slider3 = Scale(self)
+        self.slider3.config(orient=HORIZONTAL, length=400, width=10, sliderlength=20, from_=1, to_=9, tickinterval=200)
+        self.slider3.set(2)
+        # self.slider2.grid(row = 1)
+        self.slider3.config(label="swag3")
+        self.s = self.slider3
         self.s.pack()
 
     def initialize(self):

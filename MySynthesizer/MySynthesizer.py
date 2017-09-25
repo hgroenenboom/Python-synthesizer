@@ -181,4 +181,6 @@ while 1:
             osc1.freq = app.slider1.get()
         if osc1.ratio != app.slider2.get():
             osc1.ratio = app.slider2.get()
+        if osc1.type != app.slider3.get():
+            osc1.type = app.slider3.get()
         updateSpeed = 0
