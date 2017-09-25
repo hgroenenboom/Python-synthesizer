@@ -8,8 +8,9 @@ import pyaudio
 import time
 import array
 import numpy as np
-#import GUI
-import modsynth
+import GUI              #Bevat de gui Class
+import modsynth         #Bevat alle synthese classes
+from tkinter import *    #GUI
 
 #de full caps dingetjes zijn constanten. Je maakt iets dus full caps als je aan wilt geven dat dit nooit runtime verandert.
 WIDTH = 2 # sample size in bytes
@@ -21,6 +22,7 @@ countDown = 0
 outputDevice=3
 disableCloseInput = 0
 multipleOscillators = 0
+updateSpeed = 5000
 
 #
 # Function showDevices() lists available input- and output devices
@@ -51,8 +53,6 @@ class paAuWrapper():
                 outputDevice=i
             print("Selected device number: ", str(outputDevice))
 
-        check01 = input('')
-
 # def freqRamp(freqStart=200, freqEnd=400, TIME=2):   #not in use, TODO: maak de functie zo dat hij de stijgende stappen uit een lijst leest die hij heeft gegenereerd ipv ze terplekke genereerd
 #     """deze functie is nu outdated"""
 #     TIME_STEP = 100
@@ -74,13 +74,13 @@ outbuftest = np.zeros(FRAMESPERBUFFER * CHANNELS, np.dtype('int16'))
 output = outbuf
 
 if multipleOscillators == 1:
-    oscA = [modsynth.Oscillator((i + 1) * 400, 0, modsynth.Oscillator.MONOSINE, CHANNELS, RATE, 0.5 / (i + 1), i * 0.1 + 0.2) for i in range(10)]
+    oscA = [modsynth.Oscillator((i + 1) * 400, 0, modsynth.Oscillator.WNOISE, CHANNELS, RATE, 0.5 / (i + 1), i * 0.1 + 0.2) for i in range(10)]
 else:
     osc1 = modsynth.Oscillator(frequency=300, phase=0, type=modsynth.Oscillator.FM, channels=CHANNELS, rate=RATE, amp=0.5, pulsewidth=0.5, ratio=1.005, modDepth=0.015)
     osc1.filterHighpass = 2  #dubbele lowpass filter
     osc1.filterLowpass = 2  #dubbele highpass filter
     # osc2 = modsynth.Oscillator(600, 0, type=modsynth.Oscillator.FM, channels=CHANNELS, rate=RATE, modDepth= 0.013, amp=0, ratio=1.001)
-    lp1 = modsynth.AverageFilter(0, 0, CHANNELS)
+    #lp1 = modsynth.AverageFilter(0, 0, CHANNELS)
     ampEnv1 = modsynth.ADSR(att=0.01, dec=1, sus=0, rel=0, audiorate=RATE)
     vca1 = modsynth.VCA()
     buffer = modsynth.Buffer(audiorate=RATE, channels=CHANNELS, framesperbuffer=FRAMESPERBUFFER)
@@ -144,19 +144,41 @@ stream = paHandle.open(format=paHandle.get_format_from_width(WIDTH),
 
 stream.start_stream()
 
+# create a window
+root = Tk()
+
+# set window props
+root.title("ME Gui")
+# root.geometry("500x500")
+
+app = GUI.callGUI(master=root)
+
 # Make sure that the main program doesn't finish until all
 #  audio processing is done
-while stream.is_active():
-    if disableCloseInput == 0:
-        closeInput = input("\nPress q to exit, 'ramp' to start freqRamp, 'env' to trigger the ADSR and 'test' to disable the close input\n").split(" ")
-        if (closeInput[0] == 'q'):
-            print("Closing...")
-            stream.stop_stream()
-        elif (closeInput[0] == "ramp"):
-            print("Ramping")
-            freqRamp(int(closeInput[1]), int(closeInput[2]), int(closeInput[3]))
-        elif (closeInput[0] == "test"):
-            disableCloseInput = 1
-        elif (closeInput[0] == "env"):
-            osc1.adsrStart = 0
-        time.sleep(1)
+
+# while stream.is_active():
+#     #app.update()
+#     app.mainloop()
+#     if disableCloseInput == 0:
+#         closeInput = input("\nPress q to exit, 'ramp' to start freqRamp, 'env' to trigger the ADSR and 'test' to disable the close input\n").split(" ")
+#         if (closeInput[0] == 'q'):
+#             print("Closing...")
+#             stream.stop_stream()
+#         elif (closeInput[0] == "ramp"):
+#             print("Ramping")
+#             #freqRamp(int(closeInput[1]), int(closeInput[2]), int(closeInput[3]))
+#         elif (closeInput[0] == "test"):
+#             disableCloseInput = 1
+#         elif (closeInput[0] == "env"):
+#             osc1.adsrStart = 0
+#     time.sleep(0.01)
+
+while 1:
+    app.update()
+    updateSpeed += 1
+    if updateSpeed >= 99:
+        if osc1.freq != app.slider1.get():
+            osc1.freq = app.slider1.get()
+        if osc1.ratio != app.slider2.get():
+            osc1.ratio = app.slider2.get()
+        updateSpeed = 0

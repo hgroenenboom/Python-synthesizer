@@ -160,7 +160,7 @@ class VCA:
         self.chan = channels
         self.rate = audiorate
 
-        vca = np.zeros(self.chan, dtype='int16')
+        self.vca = np.zeros(self.chan, dtype='int16')
 
     def multiply(self, input1, modulator=1, input2=0, input3=0):
         self.vca = (input1 + input2 + input3) * modulator
