@@ -51,16 +51,16 @@ class paAuWrapper():
                 outputDevice=i
             print("Selected device number: ", str(outputDevice))
 
-def freqRamp(freqStart=200, freqEnd=400, TIME=2):   #not in use, TODO: maak de functie zo dat hij de stijgende stappen uit een lijst leest die hij heeft gegenereerd ipv ze terplekke genereerd
-    """deze functie is nu outdated"""
-      TIME_STEP = 100
-      freqInc = (freqEnd - freqStart) / (TIME * TIME_STEP)
-      freq = freqStart
-      for n in range(TIME * TIME_STEP):
-          freq += freqInc
-          time.sleep(.01)
-          sineFrequency[0] = freq
-      return freq
+# def freqRamp(freqStart=200, freqEnd=400, TIME=2):   #not in use, TODO: maak de functie zo dat hij de stijgende stappen uit een lijst leest die hij heeft gegenereerd ipv ze terplekke genereerd
+#     """deze functie is nu outdated"""
+#       TIME_STEP = 100
+#       freqInc = (freqEnd - freqStart) / (TIME * TIME_STEP)
+#       freq = freqStart
+#       for n in range(TIME * TIME_STEP):
+#           freq += freqInc
+#           time.sleep(.01)
+#           sineFrequency[0] = freq
+#       return freq
 
 
 #
@@ -153,3 +153,5 @@ while stream.is_active():
         elif (closeInput[0] == "env"):
             osc.adsrStart = 0
         time.sleep(1)
+
+closeInput = input
