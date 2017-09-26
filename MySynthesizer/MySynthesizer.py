@@ -166,7 +166,7 @@ app = GUI.callGUI(master=root)
 #             stream.stop_stream()
 #         elif (closeInput[0] == "ramp"):
 #             print("Ramping")
-#             #freqRamp(int(closeInput[1]), int(closeInput[2]), int(closeInput[3]))
+#             #freqRamp(int(closeInput[1])s, int(closeInput[2]), int(closeInput[3]))
 #         elif (closeInput[0] == "test"):
 #             disableCloseInput = 1
 #         elif (closeInput[0] == "env"):
@@ -177,10 +177,20 @@ while 1:
     app.update()
     updateSpeed += 1
     if updateSpeed >= 99:
-        if osc1.freq != app.slider1.get():
-            osc1.freq = app.slider1.get()
-        if osc1.ratio != app.slider2.get():
-            osc1.ratio = app.slider2.get()
-        if osc1.type != app.slider3.get():
-            osc1.type = app.slider3.get()
+        if osc1.freq != app.sliderFreq.get():
+            osc1.freq = app.sliderFreq.get()
+        if osc1.ratio != app.sliderRatio.get():
+            osc1.ratio = app.sliderRatio.get()
+        if osc1.type != app.sliderType.get():
+            osc1.type = app.sliderType.get()
+        if osc1.modDepth != app.sliderModDepth.get()**2.0:
+            osc1.modDepth = app.sliderModDepth.get()** 2.0
+        if osc1.amp != app.sliderAmp.get()**2.0:
+            osc1.amp = app.sliderAmp.get()**2.0
+        if ampEnv1.att != app.sliderAtt.get():
+            ampEnv1.att = app.sliderAtt.get()
+        if ampEnv1.dec != app.sliderDec.get():
+            ampEnv1.dec = app.sliderDec.get()
+        if ampEnv1.arpTime != app.sliderArpTime.get():
+            ampEnv1.arpTime = app.sliderArpTime.get()
         updateSpeed = 0

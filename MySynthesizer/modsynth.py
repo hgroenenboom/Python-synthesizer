@@ -14,6 +14,7 @@ class Oscillator():
     FM = 7
     WNOISE = 8
     AM = 9
+    "Types: Sine, Monosine, 1SinePerChannel, Monopulse, Monoadditivesaw, Sineramp, FM, White Noise, AM"
 
     monoPulseAmp = 0 #
     monoAddSawAmpA = [0] * 6  # de amplitudes van de boventonen van de additieve saw
