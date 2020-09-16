@@ -8,9 +8,9 @@ import pyaudio
 import time
 import array
 import numpy as np
-import GUI              #Bevat de gui Class
-import modsynth         #Bevat alle synthese classes
-from tkinter import *    #GUI
+import GUI              	#Bevat de gui Class
+import modsynth         	#Bevat alle synthese classes
+from tkinter import *    	#GUI
 
 #de full caps dingetjes zijn constanten. Je maakt iets dus full caps als je aan wilt geven dat dit nooit runtime verandert.
 WIDTH = 2 # sample size in bytes
@@ -19,7 +19,7 @@ RATE = 44100
 FRAMESPERBUFFER = 256
 
 countDown = 0
-outputDevice=3
+outputDevice=5
 disableCloseInput = 0
 multipleOscillators = 0
 updateSpeed = 5000
@@ -125,9 +125,12 @@ pW = paAuWrapper()
 print("\nAvailable devices: ")
 pW.showDevices(paHandle)
 print("\n")
+
 # select a device
+test = int(input("set selected device id: "))
+
 pW.setOutputDevice(paHandle)
-devinfo = paHandle.get_device_info_by_index(outputDevice)
+devinfo = paHandle.get_device_info_by_index(test)
 print("Selected device name: ",devinfo.get('name'))
 
 #
