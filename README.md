@@ -1,22 +1,35 @@
-# Python synthesizer
+# MySynthesizer: Python Music Synthesizer
 
-MySynthesizer is build upon code by Marc Groenewegen en Ciska Vriezinga. MySynthesizer is a very simple music synthesis application. This was my first synthesizer ever written. 
+MySynthesizer is a music synthesis application built on code by Marc Groenewegen and Ciska Vriezinga. This project marks my initial venture into the realm of synthesizer development.
 
-The program should be ran by running MySynthesizer.py. Python 3.6 or later is needed.
-The PyAudio module is also required:
-```pip install PyAudio```
+## Getting Started
 
-The synth has a: 
-- ADSR
-- Amplifier
-- Averagefilter with LP & HP
-- White Noise
-- FM
-- AM
-- Sine, Additive Saw, Pulse 
+To run the program, execute the `MySynthesizer.py` file. Ensure you have Python 3.6 or later installed. Additionally, pyaudio and numpy are needed and can be installed using the following command:
 
-![screenshot](resources/screenshot.png "Screenshot")
+```
+pip install numpy
+pip install PyAudio
+```
 
-### Status
+## Features
+
+MySynthesizer incorporates the following features:
+
+- **ADSR**
+- **Amplifier**
+- **Averagefilter with LP & HP**
+- **White Noise**
+- **FM**
+- **AM**
+- **Sine, Additive Saw, Pulse**
+
+## Screenshots
+
+![screenshot](resources/screenshot.png "Application Screenshot")
+
+## Project Status
+
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/hgroenenboom/Python-synthesizer)
 ![GitHub last commit](https://img.shields.io/github/last-commit/hgroenenboom/Python-synthesizer)
+
+Please note that this project is no longer actively maintained. Feel free to explore the existing features, and if you encounter any issues, you're welcome to address them. However, new features or updates are not anticipated.
